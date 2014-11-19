@@ -1,9 +1,9 @@
 // WordBreak.cpp : 定义控制台应用程序的入口点。
 //
-
 #include "stdafx.h"
 #include<string>
 #include<unordered_set>
+//采用递归方法，但是添加了备忘录，记录所有没有匹配过得字母，这样可以少很多的递归
 using namespace std;
 class Solution {
 public:

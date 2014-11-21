@@ -4,6 +4,9 @@
 #include "stdafx.h"
 #include <iostream>
 #include <queue>
+//解题思路：如果右孩子不为空 则next 为右孩子。
+//         否则，找父亲的next（uncle） 有左孩子则找左孩子，没有左孩子则找右孩子，都没有则找下一个uncle .
+//         因为少考虑了一种情况（和父亲相连的uncle可能是没有孩子的，应该加个while）导致一直没过
 using namespace std;
 struct TreeLinkNode
 {

@@ -1,11 +1,11 @@
-// ValidateBinarySearchTree.cpp : �������̨Ӧ�ó������ڵ㡣
+﻿// ValidateBinarySearchTree.cpp : 定义控制台应用程序的入口点。
 //
 
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
 using namespace std;
-//˼·����Ϊ���������������������������ǵ����Ĺ�ϵ�����������˼·��ɡ�
+//思路：递归调用，每次递归的时候需要将取值范围传递进下一层
 struct TreeNode {
 	int val;
 	TreeNode *left;
@@ -14,40 +14,37 @@ struct TreeNode {
  };
 
 class Solution {
-private:
-	vector<int> bstArr;
 public:
-	bool isValidBST(TreeNode *root) {
-		//return isValidBST(root,NULL,0);
-		middleTravers(root);
-		return isValidBST(bstArr);
-	}
-	void middleTravers(TreeNode *root)
-	{
-		if(root==NULL)
-			return;
-		TreeNode*left=root->left,*right=root->right;
-		middleTravers(left);
-		bstArr.push_back(root->val);
-		middleTravers(right);
-	}
-	bool isValidBST(vector<int> bstArr)
-	{
-		if(bstArr.size()==0)
-			return true;
-		int temp=bstArr[0];
-		for(int i=1;i<bstArr.size();i++)
-		{
-			if(temp<bstArr[i])
-			{
-				temp=bstArr[i];
-				continue;
-			}
-			return false;
-		}
-		return true;
-	}
+    bool isValidBST(TreeNode *root) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if(root == NULL)
+        {
+            return true;
+        }
+        else
+        {
+            return isValidNode(root->left, root->val, INT_MIN) && isValidNode(root->right, INT_MAX, root->val);
+        }
+    }
+    
+    bool isValidNode(TreeNode * p, int max, int min)
+    {
+        if(p == NULL)
+        {
+            return true;
+        }
+        else if(p->val < max && p->val > min)
+        {
+            return isValidNode(p->left, p->val, min) && isValidNode(p->right, max, p->val);
+        }
+        else
+        {
+            return false;
+        }
+    }
 };
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {

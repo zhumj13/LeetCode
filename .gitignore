@@ -1,0 +1,12 @@
+*.opensdf
+*.obj
+*.sln
+*.ipch
+*.tlb
+*.sdf
+*.suo
+*.vspscc
+*.idl
+*.user
+**/Debug/
+**/Release/
